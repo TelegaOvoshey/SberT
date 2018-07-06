@@ -19,16 +19,17 @@ public class Controller {
     private TextField userId;
     private Button searchUser;
     private ImageView userPhoto;
+    private ClientVK clientVK;
 
-    ClientVK clientVK;
     @FXML
     protected void searchingUser() {
+        TotalInformationVO totalInformationVO = clientVK.getTotalInformation("zzredeyezz");
         userId.getText();
 
 
     }
-    public static ClientVK setClient(ClientVK clientVK){
-        return clientVK;
+    public void setClient(String tokenUri){
+        this.clientVK = new ClientVK(tokenUri);
     }
 }
 

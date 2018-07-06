@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class Main extends Application {
     private static int API_ID = 6622888;
-    //private static String CLIENT_SECRET = "ojmrMmjQ5A3qI1ktPxNx";
     private static String REDIRECT_URL = "https://oauth.vk.com/blank.html";
     private static String DISPLAY = "page";
     private static int SCOPE = 1 + 2 + 4096 + 8192;
@@ -38,19 +37,20 @@ public class Main extends Application {
     }
 
     private void auth(String newValue) {
-        this.clientVK = new ClientVK(newValue);
-        TotalInformationVO totalInformationVO = clientVK.getTotalInformation("zzredeyezz");
-        System.out.println(totalInformationVO.getUser().getFirstName()
-            +" "+ totalInformationVO.getUser().getLastName() +"\n"
-            +" Count likes on the wall:"+ totalInformationVO.getCountLikes_Wall()+"\n"
-            +" Count comments on the wall:"+ totalInformationVO.getCountComments_Wall());
-
+//        System.out.println(totalInformationVO.getUser().getFirstName()
+//            +" "+ totalInformationVO.getUser().getLastName() +"\n"
+//            +" Count likes on the wall:"+ totalInformationVO.getCountLikes_Wall()+"\n"
+//            +" Count comments on the wall:"+ totalInformationVO.getCountComments_Wall());
     }
 
-    private void setSearchScene(Stage primaryStage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
+    private void setSearchScene(Stage primaryStage, String tokenUri) throws IOException {
+        //Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent parent = fxmlLoader.load();
         primaryStage.setTitle("Main form");
         primaryStage.setScene(new Scene(parent));
+        Controller controller = fxmlLoader.getController();
+        controller.setClient();
         primaryStage.show();
     }
 
@@ -87,5 +87,5 @@ public class Main extends Application {
 }
 
 
-//TODO: решить проблему с зависимостями (не цепляет схему)
+//TODO: решить проблему с формамминъ
 //TODO: придумать, как хранить данные авторизации, чтобы по сто раз не авторизовываться при каждом запуске
