@@ -36,13 +36,6 @@ public class Main extends Application {
         launch(args);
     }
 
-    private void auth(String newValue) {
-//        System.out.println(totalInformationVO.getUser().getFirstName()
-//            +" "+ totalInformationVO.getUser().getLastName() +"\n"
-//            +" Count likes on the wall:"+ totalInformationVO.getCountLikes_Wall()+"\n"
-//            +" Count comments on the wall:"+ totalInformationVO.getCountComments_Wall());
-    }
-
     private void setSearchScene(Stage primaryStage, String tokenUri) throws IOException {
         //Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
@@ -50,7 +43,7 @@ public class Main extends Application {
         primaryStage.setTitle("Main form");
         primaryStage.setScene(new Scene(parent));
         Controller controller = fxmlLoader.getController();
-        controller.setClient();
+        controller.setToken(tokenUri);
         primaryStage.show();
     }
 
@@ -66,19 +59,17 @@ public class Main extends Application {
         primaryStage.show();
 
 
-
         webEngine.locationProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if(newValue.startsWith(REDIRECT_URL)){
                     System.out.println(newValue);
                     primaryStage.close();
-                    auth(newValue);
-//                    try {
-//                        setSearchScene(primaryStage);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
+                    try {
+                        setSearchScene(primaryStage,newValue);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

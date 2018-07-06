@@ -15,5 +15,5 @@
     <Button fx:id="btn_searchUser"  layoutX="405.0" layoutY="261.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Statistic" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" onAction="#searchingUser" />
     <Label layoutX="236.0" layoutY="42.0" text="Введите id, чтобы собрать статистику:" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="42.0" />
     <TextField fx:id="textFld_userId" layoutX="236.0" layoutY="59.0" prefHeight="20.0" prefWidth="130.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="60.0" />
-    <Label alignment="TOP_LEFT" layoutX="235.0" layoutY="106.0" prefHeight="101.0" prefWidth="209.0" text="Количество лайков: " AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="106.0" />
+    <Label fx:id="labelStat" alignment="TOP_LEFT" layoutX="235.0" layoutY="106.0" prefHeight="101.0" prefWidth="209.0" text="Количество лайков: " AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="106.0" />
 </AnchorPane>
