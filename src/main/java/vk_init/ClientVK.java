@@ -23,7 +23,7 @@ public class ClientVK {
     public ClientVK(String tokenUri){
         TransportClient transportClient = new HttpTransportClient();
         this.vk = new VkApiClient(transportClient);
-
+//TODO получение кода с ссылки
         String token_actor = tokenUri.split("#")[1].split("&")[0].split("=")[1];
         Integer user_actor_id= Integer.parseInt(tokenUri.split("&")[2].split("=")[1]);
         this.actor = new UserActor(user_actor_id,token_actor);
@@ -74,6 +74,7 @@ public class ClientVK {
             GetResponse wallGetQuery = this.vk.wall().get(this.actor).domain(userID).filter(WallGetFilter.ALL).execute();
             for (WallPostFull postFull:wallGetQuery.getItems()) {
                 count +=postFull.getLikes().getCount();
+                postFull.getLikes().getUserLikes();
             }
         } catch (ApiException e) {
             e.printStackTrace();
